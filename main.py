@@ -46,8 +46,21 @@ def remove_contact(arr):
     else:
         del arr[c_remove - 1]
 
-def write_contact():
-    print("Writing the contacts to")
+def write_contact(arr):
+    file = open("contacts.txt", "w")
+    i = 0
+    for contact in arr:
+        c_number = i + 1
+        file.write("Contact number " + str(c_number) + "\n")
+        file.write("Name: " + contact.get_name()+ "\n")
+        file.write("Phone number: "+ str(contact.get_phone())+ "\n")
+        file.write("Email: " + contact.get_email()+ "\n")
+        file.write("\n")
+        i += 1
+    print("Writed sucessfully to contacts.txt!")
+
+    file.close()
+
 
 
 # define which answers are correct
@@ -55,6 +68,7 @@ accepted_answers = ["a", "d", "r", "w"]
 contacts = [] # Empty array to store in the objects we create
 
 valid_input = False # see if valid input is true then proceed to function
+
 
 while True:
     user_input = str(input("Type the answer here: "))
@@ -85,4 +99,4 @@ while True:
         elif user_input.lower() == "r":
             remove_contact(contacts)
         elif user_input.lower() == "w":
-            write_contact()
+            write_contact(contacts)
